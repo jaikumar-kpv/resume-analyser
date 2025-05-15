@@ -1,0 +1,9 @@
+Flask==2.3.2
+spacy==3.7.2
+python-docx==0.8.11
+PyPDF2==3.0.1
+pandas==2.0.3
+scikit-learn==1.3.0
+numpy==1.24.3
+python-magic==0.4.27
+waitress==2.1.2
