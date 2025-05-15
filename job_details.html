@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ job.title }} - Job Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="job-detail-card">
+            <h1>{{ job.title }}</h1>
+            <h2>{{ job.company }} - {{ job.location }}</h2>
+            
+            <div class="job-meta">
+                <div>
+                    <strong>Salary:</strong> {{ job.salary or 'Not specified' }}
+                </div>
+                <div>
+                    <strong>Experience Required:</strong> {{ job.experience_required or 'Flexible' }}
+                </div>
+                <div>
+                    <strong>Job Type:</strong> {{ job.job_type or 'Full-time' }}
+                </div>
+            </div>
+            
+            <div class="job-section">
+                <h3>Job Description</h3>
+                <p>{{ job.description }}</p>
+            </div>
+            
+            <div class="job-section">
+                <h3>Required Skills</h3>
+                <div class="skills-container">
+                    {% for skill in job.required_skills.split(',') %}
+                    <span class="skill-tag">{{ skill.strip() }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="job-section">
+                <h3>Responsibilities</h3>
+                <ul>
+                    {% for resp in job.responsibilities.split(';') %}
+                    <li>{{ resp.strip() }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <div class="job-actions">
+                <a href="#" class="apply-btn">Apply Now</a>
+                <a href="{{ url_for('index') }}" class="back-btn">Back to Results</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

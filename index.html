@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analyzer - Job Matching</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Resume Analyzer for Job Matching</h1>
+        <p class="subtitle">Upload your resume to find matching job opportunities</p>
+        
+        <form method="POST" enctype="multipart/form-data" class="upload-form">
+            <div class="file-upload">
+                <input type="file" name="resume" id="resume" accept=".pdf,.docx,.txt" required>
+                <label for="resume">Choose Resume (PDF, DOCX, TXT)</label>
+            </div>
+            <button type="submit" class="analyze-btn">Analyze Resume</button>
+        </form>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>Smart Parsing</h3>
+                <p>Extracts skills, experience, and education from your resume</p>
+            </div>
+            <div class="feature">
+                <h3>Accurate Matching</h3>
+                <p>Uses AI to match your profile with relevant job openings</p>
+            </div>
+            <div class="feature">
+                <h3>Time Saving</h3>
+                <p>Reduces hours of job searching to minutes</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

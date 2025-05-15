@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Matches - Resume Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Job Matches</h1>
+        
+        <div class="resume-summary">
+            <h2>Resume Summary</h2>
+            <div class="summary-grid">
+                
+                <div>
+                    <h3>Email</h3>
+                    <p>{{ resume.email or 'Not found' }}</p>
+                </div>
+                <div>
+                    <h3>Phone</h3>
+                    <p>{{ resume.phone or 'Not found' }}</p>
+                </div>
+                <div class="full-width">
+                    <h3>Skills</h3>
+                    <div class="skills-container">
+                        {% for skill in resume.skills %}
+                        <span class="skill-tag">{{ skill }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="job-matches">
+            <h2>Found {{ match_count }} Matching Jobs</h2>
+            
+            {% for job in jobs %}
+            <div class="job-card">
+                <div class="job-header">
+                    <h3>{{ job.title }}</h3>
+                    <span class="similarity-badge">{{ "%.1f"|format(job.similarity * 100) }}% Match</span>
+                </div>
+                <p class="company">{{ job.company }} - {{ job.location }}</p>
+                <div class="job-details">
+                    <div>
+                        <span>Salary: {{ job.salary or 'Not specified' }}</span>
+                        <span>Experience: {{ job.experience_required or 'Flexible' }}</span>
+                    </div>
+                </div>
+                <p class="job-desc">{{ job.description[:200] }}...</p>
+                <a href="{{ url_for('job_details', job_id=job.id) }}" class="view-btn">View Details</a>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <a href="{{ url_for('index') }}" class="back-btn">Analyze Another Resume</a>
+    </div>
+</body>
+</html>
